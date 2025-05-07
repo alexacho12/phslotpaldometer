@@ -1,18 +1,18 @@
 const slotsData = {
-    JILI: [
-        { name: "Super Ace", jackpot: 89.04, volatility: 3 },
-        { name: "Fortune Gems 2", jackpot: 39.85, volatility: 2 },
-        { name: "Super Ace Deluxe", jackpot: 80.17, volatility: 3 },
-        { name: "Golden Empire", jackpot: 67.91, volatility: 2 },
-        { name: "Boxing King", jackpot: 67.89, volatility: 1 },
-    ],
-    PG: [
-        { name: "Wild Bandito", jackpot: 91.12, volatility: 3 },
-        { name: "Caishen Wins", jackpot: 81.05, volatility: 2 },
-        { name: "Chocolate Deluxe", jackpot: 95.48, volatility: 3 },
-        { name: "Super Golf Drive", jackpot: 93.05, volatility: 3 },
-        { name: "Bakery Bonanza", jackpot: 99.59, volatility: 3 },
-    ]
+    JILI: [...],
+    PG: [...],
+    FaChai: [...],
+    BNG: [...],
+    JDB: [...],
+    YB: [...],
+    CQ9: [...],
+    JFF: [...],
+    AW: [...],
+    MW: [...],
+    RSG: [...],
+    R88: [...],
+    KA: [...],
+    SG: [...]
 };
 
 // Function to update jackpot values dynamically
@@ -55,7 +55,10 @@ function randomIntervalUpdate(provider) {
 document.querySelectorAll(".provider-box").forEach(button => {
     button.addEventListener("click", () => {
         const provider = button.dataset.provider;
-        randomIntervalUpdate(provider);
+        if (slotsData[provider]) {
+            randomIntervalUpdate(provider);
+        } else {
+            console.log(`Provider ${provider} not found`);
+        }
     });
 });
- 
