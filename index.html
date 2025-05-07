@@ -1,181 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PH Slot Paldo Meter</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
-      color: #333;
-    }
-    h1 {
-      text-align: center;
-      padding: 20px;
-      background-color: #007bff;
-      color: white;
-    }
-    .container {
-      width: 90%;
-      margin: 20px auto;
-    }
-    .provider-logos {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      gap: 20px;
-      margin-bottom: 30px;
-    }
-    .provider-logo {
-      width: 150px;
-      height: 150px;
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .provider-logo:hover {
-      transform: scale(1.1);
-    }
-    .provider-logo img {
-      width: 80%;
-      height: 80%;
-      object-fit: contain;
-    }
-    .jackpot-section {
-      display: none;
-      margin-top: 30px;
-      padding: 20px;
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    .jackpot-section.active {
-      display: block;
-    }
-    .slot-list {
-      list-style-type: none;
-      padding: 0;
-    }
-    .slot-list li {
-      margin: 10px 0;
-      padding: 10px;
-      background-color: #f9f9f9;
-      border-radius: 8px;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    }
-    .slot-list li .slot-name {
-      font-weight: bold;
-      font-size: 18px;
-    }
-    .slot-list li .winrate {
-      font-size: 14px;
-      color: #555;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slot Providers</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>PH Slot Paldo Meter</h1>
-
-  <div class="container">
-    <!-- Provider Logos Section -->
-    <div class="provider-logos">
-      <div class="provider-logo" onclick="showProvider('jili')">
-        <img src="https://via.placeholder.com/150x150?text=JILI" alt="JILI Logo">
-      </div>
-      <div class="provider-logo" onclick="showProvider('pg')">
-        <img src="https://via.placeholder.com/150x150?text=PG" alt="PG Logo">
-      </div>
-      <div class="provider-logo" onclick="showProvider('fc')">
-        <img src="https://via.placeholder.com/150x150?text=FC" alt="FC Logo">
-      </div>
-      <div class="provider-logo" onclick="showProvider('pp')">
-        <img src="https://via.placeholder.com/150x150?text=PP" alt="PP Logo">
-      </div>
-      <div class="provider-logo" onclick="showProvider('bng')">
-        <img src="https://via.placeholder.com/150x150?text=BNG" alt="BNG Logo">
-      </div>
-    </div>
-
-    <!-- Jackpot Section for JILI -->
-    <div class="jackpot-section" id="jili">
-      <h2>JILI Slots</h2>
-      <ul class="slot-list">
-        <li>
-          <div class="slot-name">Crazy Jungle</div>
-          <div class="winrate">Winrate: 35%</div>
-        </li>
-        <li>
-          <div class="slot-name">Fortune Tree</div>
-          <div class="winrate">Winrate: 30%</div>
-        </li>
-        <li>
-          <div class="slot-name">Mystery Castle</div>
-          <div class="winrate">Winrate: 33%</div>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Jackpot Section for PG -->
-    <div class="jackpot-section" id="pg">
-      <h2>PG Slots</h2>
-      <ul class="slot-list">
-        <li>
-          <div class="slot-name">Dragon's Gold</div>
-          <div class="winrate">Winrate: 40%</div>
-        </li>
-        <li>
-          <div class="slot-name">Treasure Quest</div>
-          <div class="winrate">Winrate: 37%</div>
-        </li>
-        <li>
-          <div class="slot-name">Lucky Wheel</div>
-          <div class="winrate">Winrate: 33%</div>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Jackpot Section for FC -->
-    <div class="jackpot-section" id="fc">
-      <h2>FC Slots</h2>
-      <ul class="slot-list">
-        <li>
-          <div class="slot-name">Fruit Spin</div>
-          <div class="winrate">Winrate: 29%</div>
-        </li>
-        <li>
-          <div class="slot-name">Cash Bounty</div>
-          <div class="winrate">Winrate: 31%</div>
-        </li>
-        <li>
-          <div class="slot-name">Mega Jackpot</div>
-          <div class="winrate">Winrate: 27%</div>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Other Providers can be added similarly -->
-  </div>
-
-  <script>
-    function showProvider(provider) {
-      // Hide all sections
-      const sections = document.querySelectorAll('.jackpot-section');
-      sections.forEach(section => section.classList.remove('active'));
-
-      // Show the selected provider's section
-      const selectedSection = document.getElementById(provider);
-      if (selectedSection) {
-        selectedSection.classList.add('active');
-      }
-    }
-  </script>
+    <header>
+        <h1>Slot Providers</h1>
+    </header>
+    <section class="providers-grid">
+        <div class="provider" onclick="showSlots('JILI')">
+            <img src="placeholder-logo.png" alt="JILI Logo">
+            <p>JILI</p>
+        </div>
+        <div class="provider" onclick="showSlots('PG')">
+            <img src="placeholder-logo.png" alt="PG Logo">
+            <p>PG</p>
+        </div>
+        <div class="provider" onclick="showSlots('FC')">
+            <img src="placeholder-logo.png" alt="FC Logo">
+            <p>FC</p>
+        </div>
+        <div class="provider" onclick="showSlots('MG')">
+            <img src="placeholder-logo.png" alt="MG Logo">
+            <p>MG</p>
+        </div>
+        <div class="provider" onclick="showSlots('BB')">
+            <img src="placeholder-logo.png" alt="BB Logo">
+            <p>BB</p>
+        </div>
+    </section>
+    <section id="slots-section" class="hidden">
+        <h2>Slots</h2>
+        <div id="slots-list"></div>
+    </section>
+    <script src="script.js"></script>
 </body>
 </html>
