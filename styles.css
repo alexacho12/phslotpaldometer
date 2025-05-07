@@ -6,23 +6,45 @@ body {
 }
 
 header img {
-    width: 200px;
+    width: 100%;
+    max-width: 300px;
+    height: auto;
     margin: 20px auto;
+}
+
+.providers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
 }
 
 .provider-box {
     padding: 15px;
-    margin: 10px;
+    margin: 5px;
     background-color: #222;
     color: #fff;
     border: none;
     cursor: pointer;
     font-size: 18px;
     transition: background 0.3s ease;
+    width: 150px;
 }
 
 .provider-box:hover {
     background-color: #444;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .provider-box {
+        width: 120px;
+        font-size: 16px;
+    }
+
+    header img {
+        max-width: 250px;
+    }
 }
 
 #slot-list {
