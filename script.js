@@ -1,42 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PhSlotPaldoMeter</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <header>
-        <h1>PhSlotPaldoMeter</h1>
-        <img src="paldo-monitor.png" alt="Paldo Monitor">
-    </header>
+const slotsData = {
+    JILI: [
+        { name: "Super Ace", jackpot: 89.04, volatility: 3 },
+        { name: "Fortune Gems 2", jackpot: 39.85, volatility: 2 },
+        { name: "Super Ace Deluxe", jackpot: 80.17, volatility: 3 },
+        { name: "Golden Empire", jackpot: 67.91, volatility: 2 },
+        { name: "Boxing King", jackpot: 67.89, volatility: 1 },
+    ],
+    PG: [
+        { name: "Wild Bandito", jackpot: 91.12, volatility: 3 },
+        { name: "Caishen Wins", jackpot: 81.05, volatility: 2 },
+        { name: "Chocolate Deluxe", jackpot: 95.48, volatility: 3 },
+        { name: "Super Golf Drive", jackpot: 93.05, volatility: 3 },
+        { name: "Bakery Bonanza", jackpot: 99.59, volatility: 3 },
+    ]
+};
 
-    <main>
-        <section class="providers">
-            <button class="provider-box" data-provider="JILI">JILI</button>
-            <button class="provider-box" data-provider="PG Pocket Games Soft">PG Pocket Games Soft</button>
-            <button class="provider-box" data-provider="Fa Chai">Fa Chai</button>
-            <button class="provider-box" data-provider="BNG">BNG</button>
-            <button class="provider-box" data-provider="JDB Just Do The Best">JDB Just Do The Best</button>
-            <button class="provider-box" data-provider="YB Yellow Bat">YB Yellow Bat</button>
-            <button class="provider-box" data-provider="CQ9">CQ9</button>
-            <button class="provider-box" data-provider="JFF">JFF</button>
-            <button class="provider-box" data-provider="AW AceWin">AW AceWin</button>
-            <button class="provider-box" data-provider="MW MegaWin">MW MegaWin</button>
-            <button class="provider-box" data-provider="RSG">RSG</button>
-            <button class="provider-box" data-provider="R88">R88</button>
-            <button class="provider-box" data-provider="KA Ka Gaming">KA Ka Gaming</button>
-            <button class="provider-box" data-provider="SG Spadegaming">SG Spadegaming</button>
-            <button class="provider-box" data-provider="NE NetEnt">NE NetEnt</button>
-        </section>
+// Function to update jackpot values dynamically
+function updateJackpotValues(provider) {
+    slotsData[provider].forEach(slot => {
+        let changeRange = slot.volatility * (Math.random() * 5 - 2.5);
+        let jackpotBoost = Math.random() < 0.05 ? Math.random() * 10 : 0;
 
-        <div id="slot-list" class="hidden">
-            <h2 id="slot-title"></h2>
-            <ul id="sorted-slots"></ul>
-        </div>
-    </main>
+        slot.jackpot = Math.max(0, Math.min(100, (slot.jackpot + changeRange + jackpotBoost).toFixed(2)));
+    });
+}
 
-    <script src="script.js"></script>
-</body>
-</html>
+// Function to sort and display slots
+function displaySlots(provider) {
+    document.getElementById("slot-title").innerText = `${provider} Slot Games`;
+
+    const sortedSlots = slotsData[provider].sort((a, b) => b.jackpot - a.jackpot);
+    const slotList = document.getElementById("sorted-slots");
+    slotList.innerHTML = "";
+
+    sortedSlots.forEach(slot => {
+        const listItem = document.createElement("li");
+        listItem.textContent = `${slot.name}: ${slot.jackpot}%`;
+        slotList.appendChild(listItem);
+    });
+
+    document.getElementById("slot-list").style.display = "block";
+}
+
+// Function to trigger updates at random intervals
+function randomIntervalUpdate(provider) {
+    updateJackpotValues(provider);
+    displaySlots(provider);
+
+    let nextUpdate = Math.random() * (25 - 10) + 10;
+    setTimeout(() => randomIntervalUpdate(provider), nextUpdate * 1000);
+}
+
+// Add event listeners for provider buttons
+document.querySelectorAll(".provider-box").forEach(button => {
+    button.addEventListener("click", () => {
+        const provider = button.dataset.provider;
+        randomIntervalUpdate(provider);
+    });
+});
