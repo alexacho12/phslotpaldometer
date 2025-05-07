@@ -58,3 +58,4 @@ document.querySelectorAll(".provider-box").forEach(button => {
         randomIntervalUpdate(provider);
     });
 });
+ 
