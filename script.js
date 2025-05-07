@@ -1,11 +1,9 @@
-function showSlots(provider) {
-    const slots = {
-        "JILI": ["Crazy Jungle", "Fortune Tree"],
-        "PG": ["Dragon Legend", "Lucky Neko"],
-        "FC": ["Wild West", "Golden Buffalo"],
-        "MG": ["Mega Moolah", "Thunderstruck"],
-        "BB": ["Bonanza", "Buffalo King"]
-    };
-    document.getElementById("slots-list").innerHTML = slots[provider].map(slot => `<p>${slot}</p>`).join("");
-    document.getElementById("slots-section").classList.remove("hidden");
-}
+document.querySelectorAll(".provider-box").forEach(button => {
+    button.addEventListener("click", () => {
+        const providerName = button.dataset.provider;
+        const jackpotMeter = document.getElementById("jackpot-meter");
+        document.getElementById("meter-title").innerText = `${providerName} Jackpot Meter`;
+        document.getElementById("meter-value").innerText = `Jackpot Percentage: ${Math.floor(Math.random() * 100)}%`;
+        jackpotMeter.style.display = "block";
+    });
+});
